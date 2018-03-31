@@ -1,13 +1,10 @@
 import peewee
-from src.db.model.file_text import FileText
+from db.model.file_text import FileText
 
 
-database = peewee.SqliteDatabase("storage.db")
-
-
-def init(db_name):
+def init():
     global database
-    database = peewee.SqliteDatabase(db_name)
+    database = peewee.SqliteDatabase("storage.db")
     try:
         FileText.create_table()
     except peewee.OperationalError:
