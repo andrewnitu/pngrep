@@ -1,25 +1,35 @@
 import click
 import db.db as db
+import files.lookup as lookup
+from click_ext.default_group import DefaultGroup
 
 
 # The main entry point
-@click.group(invoke_without_command=True)
+@click.group(cls=DefaultGroup, default='search', default_if_no_args=True)
+def cli():
+    pass
+
+
+@cli.command()
 @click.option('--no-cached', '-n', is_flag=True)
-@click.pass_context
-def cli(ctx, no_cached):
+@click.argument('search-string', required=True)
+@click.argument('files', nargs=-1, type=click.Path('rb'))
+def search(no_cached, search_string, files):
+    print("SEARCHING")
     db.init()
-    if ctx.invoked_subcommand is not None:
-        return
 
     if no_cached:
-        print("grep with nocached")
+        print(search_string)
+        print(files)
+        print(lookup.lookup_no_cache(search_string, files))
     else:
         print("grep using cache")
-    return
+        print(files)
 
 
 @cli.command()
 def reindex():
+    print("REINDEXING")
     db.clear_all_file_text()
     return
 
