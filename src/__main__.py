@@ -10,26 +10,23 @@ def cli():
     pass
 
 
+# Search and update
 @cli.command()
 @click.option('--no-cached', '-n', is_flag=True)
 @click.argument('search-string', required=True)
 @click.argument('files', nargs=-1, type=click.Path('rb'))
 def search(no_cached, search_string, files):
-    print("SEARCHING")
     db.init()
 
     if no_cached:
-        print(search_string)
-        print(files)
         print(lookup.lookup_no_cache(search_string, files))
     else:
-        print("grep using cache")
-        print(files)
+        print(lookup.lookup_with_cache(search_string, files))
 
 
+# Clear the cache
 @cli.command()
-def reindex():
-    print("REINDEXING")
+def clear():
     db.clear_all_file_text()
     return
 
