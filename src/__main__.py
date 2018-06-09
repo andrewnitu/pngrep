@@ -1,6 +1,7 @@
 import click
 import db.db as db
 import files.lookup as lookup
+import colorama
 from click_ext.default_group import DefaultGroup
 
 
@@ -32,4 +33,5 @@ def clear():
 
 
 if __name__ == "__main__":
+    colorama.init()
     cli()
