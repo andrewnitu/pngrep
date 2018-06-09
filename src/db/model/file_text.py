@@ -1,7 +1,5 @@
 import peewee
 
-database = peewee.SqliteDatabase("storage.db")
-
 
 class FileText(peewee.Model):
     path = peewee.CharField()
@@ -9,4 +7,4 @@ class FileText(peewee.Model):
     updated_date = peewee.DateTimeField()
 
     class Meta:
-        database = database
+        database = peewee.SqliteDatabase("../pngrep.sqlite")
