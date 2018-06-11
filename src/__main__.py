@@ -1,6 +1,8 @@
 import click
+import sys
 import db.db as db
 import files.lookup as lookup
+import format.format as formatting
 import colorama
 from click_ext.default_group import DefaultGroup
 
@@ -20,9 +22,9 @@ def search(no_cached, search_string, files):
     db.init()
 
     if no_cached:
-        print(lookup.lookup_no_cache(search_string, files))
+        sys.stdout.write(formatting.format_results(lookup.lookup_no_cache(files), search_string))
     else:
-        print(lookup.lookup_with_cache(search_string, files))
+        sys.stdout.write(formatting.format_results(lookup.lookup_with_cache(files), search_string))
 
 
 # Clear the cache
