@@ -1,7 +1,13 @@
 click==6.7
 colorama==0.3.9
+dill==0.2.8.2
+multiprocess==0.70.6.1
+pathos==0.2.2.1
 peewee==3.5.0
 Pillow==5.1.0
+pox==0.2.4
+ppft==1.6.4.8
 pytesseract==0.2.2
+six==1.11.0
 termcolor==1.1.0
 Unipath==1.1
