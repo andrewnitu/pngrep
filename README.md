@@ -32,6 +32,6 @@ The `clear` subcommand simply clears the local SQLite cache, such that any subse
 
 Next, the request is passed to the lookup handler, which handles most of the logic. It checks in the SQLite database for previous records of the requested files, and uses that info if it exists and is not outdated.
 
-Otherwise, it makes a call to `tesseract` to scan the files and return the text. Parallel processing here is enabled by the `multiprocessing` module from the `pythos` module. The results are then stored in the SQLite database for later retrieval.
+Otherwise, it makes a call to `tesseract` to scan the files and return the text. Parallel processing here is enabled by the `multiprocessing` module from the `pathos` module. The results are then stored in the SQLite database for later retrieval.
 
 Lastly, the output is matched for the given string/regex and highlighted before printing to the console.
